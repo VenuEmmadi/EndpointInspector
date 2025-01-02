@@ -15,7 +15,7 @@ body {
 
 /* Header Styles */
 #header {
-    background-color: #007bff;
+    background-color: #5A2E6F; /* Updated with #5A2E6F */
     color: white;
     padding: 15px 20px;
     text-align: center;
@@ -24,26 +24,61 @@ body {
     font-weight: bold;
 }
 
-/* Hero Section Styles */
-#hero {
-    margin: 20px auto;
-    text-align: center;
+/* Dashboard Layout */
+#dashboard {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    margin: 20px 0;
 }
 
-#envDropdown {
-    margin: 20px 0;
-    padding: 10px;
+/* Environment Buttons (Left Sidebar) */
+#env-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+    background: #f1f1f1;
+    border-right: 1px solid #ddd;
+    height: 100%;
+    min-width: 200px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.env-btn {
+    padding: 10px 15px;
     font-size: 1rem;
     border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
+    background: white;
+    color: #5A2E6F; /* Updated text color */
     cursor: pointer;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 5px;
+    transition: all 0.3s ease;
 }
 
-#envDropdown:hover {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+.env-btn:hover {
+    background: #5A2E6F; /* Updated hover background */
+    color: white;
+    border-color: #5A2E6F;
+}
+
+.env-btn.active {
+    background: #5A2E6F; /* Updated active state */
+    color: white;
+    border-color: #5A2E6F;
+}
+
+/* Hero Section */
+#hero {
+    flex-grow: 1;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+#hero h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #5A2E6F; /* Updated title color */
 }
 
 /* Health Boxes Container */
@@ -70,7 +105,7 @@ body {
 .health-box h3 {
     font-size: 1.25rem;
     margin-bottom: 10px;
-    color: #007bff;
+    color: #5A2E6F; /* Updated heading color */
 }
 
 .health-box p {
@@ -81,7 +116,7 @@ body {
 
 .health-box:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 6px 10px rgba(90, 46, 111, 0.2); /* Adjusted hover shadow */
 }
 
 /* Health Box Status Styles */
@@ -125,7 +160,7 @@ body {
     right: 15px;
     font-size: 1.5rem;
     font-weight: bold;
-    color: #333;
+    color: #5A2E6F; /* Updated close button color */
     cursor: pointer;
 }
 
@@ -140,14 +175,35 @@ footer {
     padding: 15px 0;
     color: #555;
     font-size: 0.9rem;
-    background-color: #f1f1f1;
+    background-color: #5A2E6F; /* Updated footer background */
+    color: white; /* Footer text color */
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Styles */
 @media (max-width: 768px) {
-    #header {
-        font-size: 1.25rem;
+    #dashboard {
+        flex-direction: column;
+    }
+
+    #env-buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        padding: 10px;
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .env-btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    #health-boxes {
+        flex-direction: column;
+        align-items: center;
     }
 
     .health-box {

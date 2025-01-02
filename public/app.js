@@ -1,7 +1,15 @@
 // State variables
-let selectedEnv = "default";
+let selectedEnv = "dev";
 let serviceCurrentStatus = {};
 let services = [];
+
+// Highlight the active button
+function highlightActiveEnv(env) {
+    document.querySelectorAll(".env-btn").forEach((btn) => {
+        btn.classList.remove("active");
+    });
+    document.getElementById(env).classList.add("active");
+}
 
 // Fetch configuration and update the environment
 function fetchConfig(env) {
@@ -16,6 +24,24 @@ function fetchConfig(env) {
             console.error("Failed to load configurations:", err);
             alert(`Failed to load configurations for environment: ${env}`);
         });
+}
+
+// Render initial health boxes
+function renderHealthBoxes() {
+    const container = document.getElementById("health-boxes");
+    container.innerHTML = ""; // Clear the container for new environment services
+    services.forEach((service) => {
+        const box = document.createElement("div");
+        box.className = "health-box";
+        box.id = `health-box-${service.id}`;
+        box.innerHTML = `
+            <h3>${service.name}</h3>
+            <p>${service.description}</p>
+            <p>Status: <span id="status-${service.id}">Loading...</span></p>
+        `;
+        box.addEventListener("click", () => showApiDetails(service)); // Add click event listener
+        container.appendChild(box);
+    });
 }
 
 // Update health statuses for all services
@@ -40,30 +66,10 @@ function updateHealthStatus() {
     });
 }
 
-// Render initial health boxes
-function renderHealthBoxes() {
-    const container = document.getElementById("health-boxes");
-    container.innerHTML = ""; // Clear the container for new environment services
-    services.forEach((service) => {
-        const box = document.createElement("div");
-        box.className = "health-box";
-        box.id = `health-box-${service.id}`;
-        box.innerHTML = `
-            <h3>${service.name}</h3>
-            <p>${service.description}</p>
-            <p>Status: <span id="status-${service.id}">Loading...</span></p>
-        `;
-        box.addEventListener("click", () => showApiDetails(service)); // Add click event listener
-        container.appendChild(box);
-    });
-}
-
 // Update individual health box
 function updateHealthBox(service, statusCode) {
     const statusEl = document.getElementById(`status-${service.id}`);
-
     if (!statusEl) return; // Guard against missing elements (e.g., if service changed)
-
     const box = document.getElementById(`health-box-${service.id}`);
     if (statusCode === 200) {
         box.className = "health-box available";
@@ -99,13 +105,14 @@ function closeModal() {
 }
 
 // Handle environment selection
-function selectEnv() {
-    const dropdown = document.getElementById("envDropdown");
-    selectedEnv = dropdown.value;
-    fetchConfig(selectedEnv); // Reload configuration and update environment
+function selectEnv(env) {
+    selectedEnv = env;
+    highlightActiveEnv(env);
+    fetchConfig(env); // Reload configuration and update environment
 }
 
 // Initialize with default environment
+highlightActiveEnv(selectedEnv);
 fetchConfig(selectedEnv);
 
 // Add click listener for closing modal
@@ -115,10 +122,3 @@ window.addEventListener("click", (event) => {
         closeModal();
     }
 });
-
-// Start periodic health status checks every 30 seconds
-setInterval(() => {
-    if (services && services.length > 0) {
-        updateHealthStatus();
-    }
-}, 30000);
