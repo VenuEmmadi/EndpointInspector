@@ -1,0 +1,157 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+    padding: 10px;
+    line-height: 1.6;
+}
+
+/* Header Styles */
+#header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Hero Section Styles */
+#hero {
+    margin: 20px auto;
+    text-align: center;
+}
+
+#envDropdown {
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#envDropdown:hover {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+}
+
+/* Health Boxes Container */
+#health-boxes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+/* Health Box Styles */
+.health-box {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.health-box h3 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #007bff;
+}
+
+.health-box p {
+    margin: 10px 0;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.health-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Health Box Status Styles */
+.health-box.available {
+    border-color: #28a745;
+    box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+}
+
+.health-box.unavailable {
+    border-color: #dc3545;
+    box-shadow: 0 4px 6px rgba(220, 53, 69, 0.2);
+}
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    z-index: 1000;
+    overflow: auto; /* Enable scrolling for long content */
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content .close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+}
+
+.modal-content .close:hover {
+    color: #dc3545;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 15px 0;
+    color: #555;
+    font-size: 0.9rem;
+    background-color: #f1f1f1;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    #header {
+        font-size: 1.25rem;
+    }
+
+    .health-box {
+        width: 100%;
+        max-width: 300px;
+    }
+}

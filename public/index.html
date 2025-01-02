@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Health Checker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="header">
+    <h1>API Health Checker</h1>
+</header>
+
+<main>
+    <section id="hero">
+        <h2>Real-Time Health Check Dashboard</h2>
+        <label for="envDropdown">Select Environment:</label>
+        <select id="envDropdown" onchange="selectEnv()">
+            <option value="dev">Development</option>
+            <option value="qa">QA</option>
+            <option value="prod">Production</option>
+        </select>
+        <div id="health-boxes"></div>
+    </section>
+</main>
+
+<!-- Modal -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div id="modal-body">
+            <!-- Content will be dynamically injected here -->
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+    <p>&copy; 2025 API Health Checker. All Rights Reserved.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
